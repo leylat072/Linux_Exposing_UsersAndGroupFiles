@@ -1,4 +1,5 @@
-﻿using Microsoft.Extensions.FileProviders;
+﻿using Linux.Models;
+using Microsoft.Extensions.FileProviders;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -8,6 +9,6 @@ namespace Linux.Services
 {
     public interface IUserService
     {
-
+        Task<List<Groups>> GetAllGroupsOfUser(string uid);
     }
 }
