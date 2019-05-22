@@ -65,8 +65,8 @@ namespace Linux.Controllers
             var json = string.Empty;
             var users = await ReadFile();
             var user = users.Where(u => u.Uid == uid).FirstOrDefault();
-            if (user != null)           
-                 json = Newtonsoft.Json.JsonConvert.SerializeObject(user);
+            if (user != null)
+                json = Newtonsoft.Json.JsonConvert.SerializeObject(user);
             while (watcher.passwdFileIsChanged == true)
             {
                 users = await ReadFile();
@@ -78,7 +78,7 @@ namespace Linux.Controllers
 
             return json;
         }
-         private Task<List<User>> ReadFile()
+        private Task<List<User>> ReadFile()
         {
             Task<List<User>> obTask = Task.Run(() =>
             {
@@ -118,9 +118,9 @@ namespace Linux.Controllers
             return obTask;
 
         }
-        private Task<List<User>> ReadGroupFile()
+        private Task<List<Groups>> ReadGroupFile()
         {
-            Task<List<User>> obTask = Task.Run(() =>
+            Task<List<Groups>> obTask = Task.Run(() =>
             {
                 /*
                 group_name: It is the name of group.If you run ls -l command, you will see this name printed in the group field.
@@ -136,24 +136,22 @@ namespace Linux.Controllers
                     line = reader.ReadToEnd();
                 }
                 string[] vv = line.Split("\r\n");
-                var users = new List<User>();
+                var groups = new List<Groups>();
                 foreach (string s in vv)
                 {
-                    var user = new User();
+                    var group = new Groups();
                     var s2 = s.Split(":");
-                    user.Name = s2[0];
-                    user.Uid = s2[2];
-                    user.Gid = s2[3];
-                    user.Comment = s2[4];
-                    user.Home = s2[5];
-                    users.Add(user);
+                    group.GroupName = s2[0];
+                    group.Gid = s2[2];
+                    group.GroupList = new List<string>();
+                    var gl = s.Split(",");
+                    foreach (string g in gl)
+                        group.GroupList.Add(g);
+                    groups.Add(group);
                 }
-
-                return users;
-
+                return groups;
             });
             return obTask;
-
         }
         /// <summary>
         /// GET /users/<uid>/groups
