@@ -7,6 +7,7 @@ using Linux.Models;
 using Microsoft.Extensions.FileProviders;
 using System.IO;
 using Linux.Classes;
+using Linux.Services;
 
 namespace Linux.Controllers
 {
@@ -15,11 +16,12 @@ namespace Linux.Controllers
     public class UsersController : ControllerBase
     {
         private readonly IFileProvider _fileProvider;
-
-        public UsersController(IFileProvider fileProvider)
+        private readonly IUserService _userService;
+        public UsersController(IFileProvider fileProvider, IUserService userService)
         {
 
             _fileProvider = fileProvider;
+            _userService = userService;
 
         }
         // GET api/values
@@ -158,9 +160,14 @@ namespace Linux.Controllers
         //Return all the groups for a given user.
         /// </summary>
         [HttpGet("{uid}/groups")]
-        public void GetAllGroupsOfUser()
+        public async Task<ActionResult<string>>  GetAllGroupsOfUser(string uid)
         {
-
+            //SHELL
+            var json = string.Empty;
+            var users = await ReadFile();
+            var groups = await ReadGroupFile();
+            var user = users.Where(u => u.Uid == uid).FirstOrDefault();
+           
         }
     }
 }
