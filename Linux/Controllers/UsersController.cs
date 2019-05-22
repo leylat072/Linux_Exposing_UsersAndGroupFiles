@@ -118,18 +118,15 @@ namespace Linux.Controllers
             return obTask;
 
         }
-        private Task<List<User>> ReadFile1()
+        private Task<List<User>> ReadGroupFile()
         {
             Task<List<User>> obTask = Task.Run(() =>
             {
                 /*
-                * User name
-                   Encrypted password
-                   User ID number (UID)
-                   User's group ID number (GID)
-                   Full name of the user (GECOS)
-                   User home directory
-                   Login shell root:!:0:0::/:/usr/bin/ksh
+                group_name: It is the name of group.If you run ls -l command, you will see this name printed in the group field.
+                Password: Generally password is not used, hence it is empty/blank.It can store encrypted password.This is useful to implement privileged groups.
+                Group ID (GID): Each user must be assigned a group ID. You can see this number in your /etc/passwd file.
+                Group List: It is a list of user names of users who are members of the group.The user names, must be separated by commas.
                 */
 
                 FileStream fileStream = new FileStream("C:\\test\\test.txt", FileMode.Open);
@@ -170,10 +167,7 @@ namespace Linux.Controllers
     }
 }
 
-group_name: It is the name of group.If you run ls -l command, you will see this name printed in the group field.
-Password: Generally password is not used, hence it is empty/blank.It can store encrypted password.This is useful to implement privileged groups.
-Group ID (GID): Each user must be assigned a group ID. You can see this number in your /etc/passwd file.
-Group List: It is a list of user names of users who are members of the group.The user names, must be separated by commas.
+
 
 GET /users/<uid>/groups
 Return all the groups for a given user.
