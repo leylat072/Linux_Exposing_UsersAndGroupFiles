@@ -14,8 +14,8 @@
       "launchBrowser": true,
       "launchUrl": "api/values",
       "environmentVariables": {
-        "groupFiles": "1",
-        "passwd": "1",
+        "groupfiles": "C:\\test\\group.txt",
+        "passwd": "c:\\test\\passwd.txt",
         "ASPNETCORE_ENVIRONMENT": "Development"
       }
     },

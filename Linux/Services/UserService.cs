@@ -88,6 +88,7 @@ namespace Linux.Services
         }
         private Task<List<User>> ReadFile()
         {
+            var passwd = System.Environment.GetEnvironmentVariable("passwd");
             Task<List<User>> obTask = Task.Run(() =>
             {
                 /*
@@ -100,7 +101,7 @@ namespace Linux.Services
                    Login shell root:!:0:0::/:/usr/bin/ksh
                 */
 
-                FileStream fileStream = new FileStream("C:\\test\\test.txt", FileMode.Open);
+                FileStream fileStream = new FileStream(passwd, FileMode.Open);
                 string line = "";
                 using (StreamReader reader = new StreamReader(fileStream))
                 {
@@ -128,6 +129,7 @@ namespace Linux.Services
         }
         private Task<List<Groups>> ReadGroupFile()
         {
+            var groupFiles = System.Environment.GetEnvironmentVariable("groupfiles");
             Task<List<Groups>> obTask = Task.Run(() =>
             {
                 /*
@@ -137,7 +139,7 @@ namespace Linux.Services
                 Group List: It is a list of user names of users who are members of the group.The user names, must be separated by commas.
                 */
 
-                FileStream fileStream = new FileStream("C:\\test\\groupfiles.txt", FileMode.Open);
+                FileStream fileStream = new FileStream(groupFiles, FileMode.Open);
                 string line = "";
                 using (StreamReader reader = new StreamReader(fileStream))
                 {
