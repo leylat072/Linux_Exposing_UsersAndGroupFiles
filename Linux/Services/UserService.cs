@@ -12,10 +12,11 @@ namespace Linux.Services
     public class UserService : IUserService
     {
         private readonly IFileProvider _fileProvider;
-        public UserService(IFileProvider fileProvider )        {
+        public UserService(IFileProvider fileProvider)
+        {
 
             _fileProvider = fileProvider;
-          
+
 
         }
         public async Task<List<User>> GetUsers(User userQuery)
@@ -28,25 +29,25 @@ namespace Linux.Services
             users = userQuery.Home == null ? users : users.Where(u => u.Home == userQuery.Home).ToList();
             users = userQuery.Comment == null ? users : users.Where(u => u.Comment == userQuery.Comment).ToList();
             //var json = Newtonsoft.Json.JsonConvert.SerializeObject(users);
-           /* while (watcher.passwdFileIsChanged == true)
-            {
-                users = await ReadFile();
-                json = Newtonsoft.Json.JsonConvert.SerializeObject(users);
-                watcher.passwdFileIsChanged = false;
-            }*/
+            /* while (watcher.passwdFileIsChanged == true)
+             {
+                 users = await ReadFile();
+                 json = Newtonsoft.Json.JsonConvert.SerializeObject(users);
+                 watcher.passwdFileIsChanged = false;
+             }*/
 
             return users;
         }
         public async Task<List<User>> GetAllUsers()
         {
             var users = await ReadFile();
-          //  var json = Newtonsoft.Json.JsonConvert.SerializeObject(users);
-           /* while (watcher.passwdFileIsChanged == true)
-            {
-                users = await ReadFile();
-                json = Newtonsoft.Json.JsonConvert.SerializeObject(users);
-                watcher.passwdFileIsChanged = false;
-            }*/
+            //  var json = Newtonsoft.Json.JsonConvert.SerializeObject(users);
+            /* while (watcher.passwdFileIsChanged == true)
+             {
+                 users = await ReadFile();
+                 json = Newtonsoft.Json.JsonConvert.SerializeObject(users);
+                 watcher.passwdFileIsChanged = false;
+             }*/
             return users;
         }
         public async Task<User> GetUserByUID(string uid)
@@ -58,14 +59,14 @@ namespace Linux.Services
             return user;
             /*if (user != null)
                 json = Newtonsoft.Json.JsonConvert.SerializeObject(user);*/
-           /* while (watcher.passwdFileIsChanged == true)
-            {
-                users = await ReadFile();
-                user = users.Where(u => u.Uid == uid).FirstOrDefault();
-                if (user != null)
-                    json = Newtonsoft.Json.JsonConvert.SerializeObject(user);
-                watcher.passwdFileIsChanged = false;
-            }*/
+            /* while (watcher.passwdFileIsChanged == true)
+             {
+                 users = await ReadFile();
+                 user = users.Where(u => u.Uid == uid).FirstOrDefault();
+                 if (user != null)
+                     json = Newtonsoft.Json.JsonConvert.SerializeObject(user);
+                 watcher.passwdFileIsChanged = false;
+             }*/
 
             //return json;
         }
@@ -75,7 +76,7 @@ namespace Linux.Services
             var users = await ReadFile();
             var groups = await ReadGroupFile();
             var user = users.Where(u => u.Uid == uid).FirstOrDefault();
-            if (user == null || groups ==null) return new List<Groups>();
+            if (user == null || groups == null) return new List<Groups>();
             var findGroups = new List<Groups>();
             foreach (var group in groups)
             {
@@ -163,7 +164,26 @@ namespace Linux.Services
         public async Task<List<Groups>> GetAllGroups()
         {
             //SHELL
-            var groups = await ReadGroupFile();          
+            var groups = await ReadGroupFile();
+            return groups;
+        }
+        public async Task<List<Groups>> GetGroups(Groups query)
+        {
+            //SHELL
+            var groups = await ReadGroupFile();
+            groups = query.Name == null ? groups : groups.Where(u => u.Name == query.Name).ToList();
+            groups = query.Gid == null ? groups : groups.Where(u => u.Gid == query.Gid).ToList();
+           // groups = query.Member == null ? groups : groups.Where(p => p.Member.All(x => query.Member.Contains(x))).ToList();
+            groups = query.Member == null ? groups : groups.Where(p => query.Member.All(x => p.Member.Contains(x))).ToList();
+
+            //var json = Newtonsoft.Json.JsonConvert.SerializeObject(users);
+            /* while (watcher.passwdFileIsChanged == true)
+             {
+                 users = await ReadFile();
+                 json = Newtonsoft.Json.JsonConvert.SerializeObject(users);
+                 watcher.passwdFileIsChanged = false;
+             }*/
+
             return groups;
         }
     }

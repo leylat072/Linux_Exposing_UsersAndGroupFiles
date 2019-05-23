@@ -26,11 +26,11 @@ namespace Linux.Controllers
         }
         // GET api/values
         [HttpGet("query")]
-        public async Task<ActionResult<string>> GetUsers([FromQuery]  User userQuery)
+        public async Task<ActionResult<string>> GetGroups([FromQuery]  Groups query)
         {
             try
             {
-                var ret = await _userService.GetUsers(userQuery);
+                var ret = await _userService.GetGroups(query);
                 return Ok(ret);
             }
             catch (Exception)
