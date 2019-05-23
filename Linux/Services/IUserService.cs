@@ -13,5 +13,6 @@ namespace Linux.Services
         Task<List<User>> GetUsers(User userQuery);
         Task<List<User>> GetAllUsers();
         Task<User> GetUserByUID(string uid);
+        Task<List<Groups>> GetAllGroups();
     }
 }

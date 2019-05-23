@@ -160,6 +160,12 @@ namespace Linux.Services
             });
             return obTask;
         }
+        public async Task<List<Groups>> GetAllGroups()
+        {
+            //SHELL
+            var groups = await ReadGroupFile();          
+            return groups;
+        }
     }
 }
 
