@@ -79,7 +79,7 @@ namespace Linux.Services
             var findGroups = new List<Groups>();
             foreach (var group in groups)
             {
-                if (group.GroupList.Contains(user.Name))
+                if (group.Member.Contains(user.Name))
                     findGroups.Add(group);
             }
             return findGroups;
@@ -136,7 +136,7 @@ namespace Linux.Services
                 Group List: It is a list of user names of users who are members of the group.The user names, must be separated by commas.
                 */
 
-                FileStream fileStream = new FileStream("C:\\test\\test.txt", FileMode.Open);
+                FileStream fileStream = new FileStream("C:\\test\\groupfiles.txt", FileMode.Open);
                 string line = "";
                 using (StreamReader reader = new StreamReader(fileStream))
                 {
@@ -148,12 +148,12 @@ namespace Linux.Services
                 {
                     var group = new Groups();
                     var s2 = s.Split(":");
-                    group.GroupName = s2[0];
+                    group.Name = s2[0];
                     group.Gid = s2[2];
-                    group.GroupList = new List<string>();
-                    var gl = s.Split(",");
+                    group.Member = new List<string>();
+                    var gl = s2[3].ToString().Split(",");
                     foreach (string g in gl)
-                        group.GroupList.Add(g);
+                        group.Member.Add(g);
                     groups.Add(group);
                 }
                 return groups;

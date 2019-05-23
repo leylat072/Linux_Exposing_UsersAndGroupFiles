@@ -7,9 +7,9 @@ namespace Linux.Models
 {
        public class Groups
     {
-            public string GroupName { get; set; }
+            public string Name { get; set; }
             public string Gid { get; set; }
-            public List<string> GroupList { get; set; }
+            public List<string> Member { get; set; }
      
    
     }
