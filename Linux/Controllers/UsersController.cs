@@ -26,7 +26,7 @@ namespace Linux.Controllers
         }
         // GET api/values
         [HttpGet("query")]
-        public async Task<ActionResult<string>> GetUsers([FromQuery]  User userQuery)
+        public async Task<ActionResult> GetUsers([FromQuery]  User userQuery)
         {
             try
             {
@@ -42,7 +42,7 @@ namespace Linux.Controllers
         }
         // GET api/values
         [HttpGet]
-        public async Task<ActionResult<string>> GetAllUsers()
+        public async Task<ActionResult> GetAllUsers()
         {
             try
             {
@@ -57,7 +57,7 @@ namespace Linux.Controllers
         }
 
         [HttpGet("{uid}")]
-        public async Task<ActionResult<string>> GetUserByUID(string uid)
+        public async Task<ActionResult> GetUserByUID(string uid)
         {
             try
             {

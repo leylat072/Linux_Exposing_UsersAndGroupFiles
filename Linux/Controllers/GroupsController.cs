@@ -26,7 +26,7 @@ namespace Linux.Controllers
         }
         // GET api/values
         [HttpGet("query")]
-        public async Task<ActionResult<string>> GetGroups([FromQuery]  Groups query)
+        public async Task<ActionResult> GetGroups([FromQuery]  Groups query)
         {
             try
             {
@@ -42,7 +42,7 @@ namespace Linux.Controllers
         }
         // GET api/values
         [HttpGet]
-        public async Task<ActionResult<string>> GetAllGroups()
+        public async Task<ActionResult> GetAllGroups()
         {
             try
             {
@@ -56,12 +56,12 @@ namespace Linux.Controllers
             }
         }
 
-        [HttpGet("{uid}")]
-        public async Task<ActionResult<string>> GetUserByUID(string uid)
+        [HttpGet("{gid}")]
+        public async Task<ActionResult> GetGroupByGID(string gid)
         {
             try
             {
-                var ret = await _userService.GetUserByUID(uid);
+                var ret = await _userService.GetGroupByGID(gid);
                 if (ret == null) return StatusCode(404);
                 return Ok(ret);
             }
@@ -72,26 +72,7 @@ namespace Linux.Controllers
             }
         }
 
-        /// <summary>
-        /// GET /users/<uid>/groups
-        //Return all the groups for a given user.
-        /// </summary>
-        [HttpGet("{uid}/groups")]
-        public async Task<IActionResult>  GetAllGroupsOfUser(string uid)
-        {
-            try
-            {
-                var ret =  await _userService.GetAllGroupsOfUser(uid);
-                return Ok(ret);
-            }
-            catch(Exception)
-            {
-                // return StatusCode(StatusCodes.)
-                return StatusCode(404);
-            }
-           
-           
-        }
+       
 
         
     }

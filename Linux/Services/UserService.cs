@@ -173,7 +173,6 @@ namespace Linux.Services
             var groups = await ReadGroupFile();
             groups = query.Name == null ? groups : groups.Where(u => u.Name == query.Name).ToList();
             groups = query.Gid == null ? groups : groups.Where(u => u.Gid == query.Gid).ToList();
-           // groups = query.Member == null ? groups : groups.Where(p => p.Member.All(x => query.Member.Contains(x))).ToList();
             groups = query.Member == null ? groups : groups.Where(p => query.Member.All(x => p.Member.Contains(x))).ToList();
 
             //var json = Newtonsoft.Json.JsonConvert.SerializeObject(users);
@@ -186,6 +185,27 @@ namespace Linux.Services
 
             return groups;
         }
+        public async Task<Groups> GetGroupByGID(string gid)
+        {
+            //SHELL
+            var json = string.Empty;
+            var groups = await ReadGroupFile();
+            var group = groups.Where(u => u.Gid == gid).FirstOrDefault();
+            return group;
+            /*if (user != null)
+                json = Newtonsoft.Json.JsonConvert.SerializeObject(user);*/
+            /* while (watcher.passwdFileIsChanged == true)
+             {
+                 users = await ReadFile();
+                 user = users.Where(u => u.Uid == uid).FirstOrDefault();
+                 if (user != null)
+                     json = Newtonsoft.Json.JsonConvert.SerializeObject(user);
+                 watcher.passwdFileIsChanged = false;
+             }*/
+
+            //return json;
+        }
+
     }
 }
 

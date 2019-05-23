@@ -15,5 +15,6 @@ namespace Linux.Services
         Task<User> GetUserByUID(string uid);
         Task<List<Groups>> GetAllGroups();
         Task<List<Groups>> GetGroups(Groups query);
+        Task<Groups> GetGroupByGID(string gid);
     }
 }
