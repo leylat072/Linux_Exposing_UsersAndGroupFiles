@@ -16,7 +16,7 @@
       "environmentVariables": {
         "groupfiles": "C:\\test\\group.txt",
         "passwd": "c:\\test\\passwd.txt",
-        "ASPNETCORE_ENVIRONMENT": "Test"
+        "ASPNETCORE_ENVIRONMENT": "Development"
       }
     },
     "Linux": {

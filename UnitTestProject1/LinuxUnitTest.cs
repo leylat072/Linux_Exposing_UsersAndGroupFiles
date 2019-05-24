@@ -1,4 +1,5 @@
 using Linux;
+using Linux.Models;
 using Linux.Services;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
@@ -27,12 +28,31 @@ namespace UnitTestProject1
             var result =  userService.GetAllUsers().Result;
 
             Assert.IsFalse(result.Count != 18, "total user is 18");
-
-
-
-
         }
+        [TestMethod]
+        public void GetUsers()
+        {
+            _config = new ApiConfigurationSettings();
+            _config.GroupFiles = "C:\\test\\group.txt"; //System.Environment.GetEnvironmentVariable("groupfiles");
+            _config.Passwd = "C:\\test\\passwd.txt";//System.Environment.GetEnvironmentVariable("passwd");
+            UserService userService = new UserService(_config);
+            var query = new User();
+            query.Name = "root";
+            var result = userService.GetUsers(query).Result;
+
+            Assert.IsFalse(result.Count !=1, "total user is 1");
+            Assert.IsFalse(result[0].Uid != "0", "the uid is wrong");
+            query.Uid = "0";
+             result = userService.GetUsers(query).Result;
+            Assert.IsFalse(result.Count != 1, "uid & name filter does not work");
+          
+            query.Shell = "/usr/bin/ksh";
+             result = userService.GetUsers(query).Result;
+
+            Assert.IsFalse(result.Count != 1, "uid & name & shel filter does not work");
        
+        }
+
     }
 
    
