@@ -14,7 +14,7 @@ using System.Linq;
 namespace UnitTestProject1
 {
     [TestClass]
-    public class LinuxUnitTest
+    public class UsersTest
 
 
     {
