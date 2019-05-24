@@ -9,6 +9,7 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Chrome;
 using System;
+using System.Linq;
 
 namespace UnitTestProject1
 {
@@ -78,6 +79,34 @@ namespace UnitTestProject1
 
 
       
+        }
+
+        [TestMethod]
+        public void GetAllGroupsOfUser()
+        {
+            _config = new ApiConfigurationSettings();
+            _config.GroupFiles = "C:\\test\\group.txt"; //System.Environment.GetEnvironmentVariable("groupfiles");
+            _config.Passwd = "C:\\test\\passwd.txt";//System.Environment.GetEnvironmentVariable("passwd");
+            UserService userService = new UserService(_config);
+            var query = new User();
+            query.Name = "root";
+            var result = userService.GetAllGroupsOfUser("0").Result;
+
+            Assert.IsNotNull(result, "null :GetAllGroupsOfUser is wrong");
+            Assert.IsTrue(result.Count != 0, "count : GetAllGroupsOfUser");
+            Assert.IsTrue(result.Count == 3, "count 3: GetAllGroupsOfUser");
+
+            Assert.IsTrue(result[0].Gid == "0", "Gid 0: GetAllGroupsOfUser");
+            Assert.IsTrue(result[1].Gid == "1", "Gid 1: GetAllGroupsOfUser");
+            Assert.IsTrue(result[2].Gid == "4", "Gid 2: GetAllGroupsOfUser");
+
+           
+
+
+
+
+
+
         }
 
     }
