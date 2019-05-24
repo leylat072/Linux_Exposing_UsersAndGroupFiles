@@ -12,6 +12,7 @@ namespace Linux.Models
         public string Gid { get; set; }
         public string Comment { get; set; }
         public string Home { get; set; }
+        public string Shell { get; set; }
     }
 
    

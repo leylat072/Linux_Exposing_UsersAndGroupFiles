@@ -22,7 +22,7 @@ namespace Linux.Services
         public async Task<List<User>> GetUsers(User userQuery)
         {
             //SHELL
-            var users = await ReadFile();
+            var users = await ReadPasswdFile();
             users = userQuery.Name == null ? users : users.Where(u => u.Name == userQuery.Name).ToList();
             users = userQuery.Uid == null ? users : users.Where(u => u.Uid == userQuery.Uid).ToList();
             users = userQuery.Gid == null ? users : users.Where(u => u.Gid == userQuery.Gid).ToList();
@@ -40,7 +40,7 @@ namespace Linux.Services
         }
         public async Task<List<User>> GetAllUsers()
         {
-            var users = await ReadFile();
+            var users = await ReadPasswdFile();
             //  var json = Newtonsoft.Json.JsonConvert.SerializeObject(users);
             /* while (watcher.passwdFileIsChanged == true)
              {
@@ -54,7 +54,7 @@ namespace Linux.Services
         {
             //SHELL
             var json = string.Empty;
-            var users = await ReadFile();
+            var users = await ReadPasswdFile();
             var user = users.Where(u => u.Uid == uid).FirstOrDefault();
             return user;
             /*if (user != null)
@@ -73,7 +73,7 @@ namespace Linux.Services
         public async Task<List<Groups>> GetAllGroupsOfUser(string uid)
         {
             var json = string.Empty;
-            var users = await ReadFile();
+            var users = await ReadPasswdFile();
             var groups = await ReadGroupFile();
             var user = users.Where(u => u.Uid == uid).FirstOrDefault();
             if (user == null || groups == null) return new List<Groups>();
@@ -86,7 +86,7 @@ namespace Linux.Services
             return findGroups;
 
         }
-        private Task<List<User>> ReadFile()
+        private Task<List<User>> ReadPasswdFile()
         {
             var passwd = System.Environment.GetEnvironmentVariable("passwd");
             Task<List<User>> obTask = Task.Run(() =>
@@ -107,17 +107,18 @@ namespace Linux.Services
                 {
                     line = reader.ReadToEnd();
                 }
-                string[] vv = line.Split("\r\n");
+                string[] passwdUsers = line.Split("\r\n");
                 var users = new List<User>();
-                foreach (string s in vv)
+                foreach (string passwdUser in passwdUsers)
                 {
                     var user = new User();
-                    var s2 = s.Split(":");
-                    user.Name = s2[0];
-                    user.Uid = s2[2];
-                    user.Gid = s2[3];
-                    user.Comment = s2[4];
-                    user.Home = s2[5];
+                    var passwdUserElements = passwdUser.Split(":");
+                    user.Name = passwdUserElements[0];
+                    user.Uid = passwdUserElements[2];
+                    user.Gid = passwdUserElements[3];
+                    user.Comment = passwdUserElements[4];
+                    user.Home = passwdUserElements[5];
+                    user.Shell = passwdUserElements[6];
                     users.Add(user);
                 }
 
@@ -129,7 +130,7 @@ namespace Linux.Services
         }
         private Task<List<Groups>> ReadGroupFile()
         {
-            var groupFiles = System.Environment.GetEnvironmentVariable("groupfiles");
+            var groupFileName = System.Environment.GetEnvironmentVariable("groupfiles");
             Task<List<Groups>> obTask = Task.Run(() =>
             {
                 /*
@@ -139,24 +140,24 @@ namespace Linux.Services
                 Group List: It is a list of user names of users who are members of the group.The user names, must be separated by commas.
                 */
 
-                FileStream fileStream = new FileStream(groupFiles, FileMode.Open);
+                FileStream fileStream = new FileStream(groupFileName, FileMode.Open);
                 string line = "";
                 using (StreamReader reader = new StreamReader(fileStream))
                 {
                     line = reader.ReadToEnd();
                 }
-                string[] vv = line.Split("\r\n");
+                string[] groupFiles = line.Split("\r\n");
                 var groups = new List<Groups>();
-                foreach (string s in vv)
+                foreach (string groupFile in groupFiles)
                 {
                     var group = new Groups();
-                    var s2 = s.Split(":");
-                    group.Name = s2[0];
-                    group.Gid = s2[2];
+                    var groupFileInfo = groupFile.Split(":");
+                    group.Name = groupFileInfo[0];
+                    group.Gid = groupFileInfo[2];
                     group.Member = new List<string>();
-                    var gl = s2[3].ToString().Split(",");
-                    foreach (string g in gl)
-                        group.Member.Add(g);
+                    var groupFileMembers = groupFileInfo[3].ToString().Split(",");
+                    foreach (string groupFileMember in groupFileMembers)
+                        group.Member.Add(groupFileMember);
                     groups.Add(group);
                 }
                 return groups;
