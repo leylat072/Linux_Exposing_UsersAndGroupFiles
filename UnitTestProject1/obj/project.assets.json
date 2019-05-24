@@ -1613,6 +1613,19 @@
         "runtime": {
           "lib/netstandard1.3/System.Xml.XPath.XmlDocument.dll": {}
         }
+      },
+      "Linux/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v2.1",
+        "dependencies": {
+          "Microsoft.NETCore.App": "2.1.0"
+        },
+        "compile": {
+          "bin/placeholder/Linux.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/Linux.dll": {}
+        }
       }
     }
   },
@@ -5799,10 +5812,16 @@
         "system.xml.xpath.xmldocument.4.0.1.nupkg.sha512",
         "system.xml.xpath.xmldocument.nuspec"
       ]
+    },
+    "Linux/1.0.0": {
+      "type": "project",
+      "path": "../Linux/Linux.csproj",
+      "msbuildProject": "../Linux/Linux.csproj"
     }
   },
   "projectFileDependencyGroups": {
     ".NETCoreApp,Version=v2.1": [
+      "Linux >= 1.0.0",
       "MSTest.TestAdapter >= 1.3.2",
       "MSTest.TestFramework >= 1.3.2",
       "Microsoft.NET.Test.Sdk >= 15.9.0",
@@ -5842,7 +5861,11 @@
       },
       "frameworks": {
         "netcoreapp2.1": {
-          "projectReferences": {}
+          "projectReferences": {
+            "C:\\Users\\abia1\\source\\repos\\Linux\\Linux\\Linux.csproj": {
+              "projectPath": "C:\\Users\\abia1\\source\\repos\\Linux\\Linux\\Linux.csproj"
+            }
+          }
         }
       },
       "warningProperties": {

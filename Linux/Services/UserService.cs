@@ -12,13 +12,21 @@ namespace Linux.Services
     public class UserService : IUserService
     {
         private readonly IFileProvider _fileProvider;
-        public UserService(IFileProvider fileProvider)
+        private readonly IApiConfigurationSettings _iApiConfigurationSettings;
+        public UserService(IApiConfigurationSettings iApiConfigurationSettings)
         {
 
-            _fileProvider = fileProvider;
+            _iApiConfigurationSettings = iApiConfigurationSettings;
 
 
         }
+        //public UserService(IFileProvider fileProvider)
+        //{
+
+        //    _fileProvider = fileProvider;
+
+
+        //}
         public async Task<List<User>> GetUsers(User userQuery)
         {
             //SHELL
@@ -89,7 +97,7 @@ namespace Linux.Services
         }
         private Task<List<User>> ReadPasswdFile()
         {
-            var passwd = System.Environment.GetEnvironmentVariable("passwd");
+            var passwd = _iApiConfigurationSettings.Passwd;
             Task<List<User>> obTask = Task.Run(() =>
             {
                 /*
@@ -131,7 +139,7 @@ namespace Linux.Services
         }
         private Task<List<Groups>> ReadGroupFile()
         {
-            var groupFileName = System.Environment.GetEnvironmentVariable("groupfiles");
+           var groupFileName = _iApiConfigurationSettings.GroupFiles;
             Task<List<Groups>> obTask = Task.Run(() =>
             {
                 /*

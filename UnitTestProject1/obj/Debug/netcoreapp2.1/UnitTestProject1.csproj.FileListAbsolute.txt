@@ -12,3 +12,14 @@ C:\Users\abia1\source\repos\Linux\UnitTestProject1\obj\Debug\netcoreapp2.1\UnitT
 C:\Users\abia1\source\repos\Linux\UnitTestProject1\bin\Debug\netcoreapp2.1\UnitTestProject1.pdb
 C:\Users\abia1\source\repos\Linux\UnitTestProject1\obj\Debug\netcoreapp2.1\UnitTestProject1.dll
 C:\Users\abia1\source\repos\Linux\UnitTestProject1\obj\Debug\netcoreapp2.1\UnitTestProject1.pdb
+C:\Users\abia1\source\repos\Linux\UnitTestProject1\bin\Debug\netcoreapp2.1\Linux.dll
+C:\Users\abia1\source\repos\Linux\UnitTestProject1\bin\Debug\netcoreapp2.1\Microsoft.Extensions.DependencyInjection.dll
+C:\Users\abia1\source\repos\Linux\UnitTestProject1\bin\Debug\netcoreapp2.1\Microsoft.Extensions.FileProviders.Abstractions.dll
+C:\Users\abia1\source\repos\Linux\UnitTestProject1\bin\Debug\netcoreapp2.1\Linux.pdb
+C:\Users\abia1\source\repos\Linux\UnitTestProject1\bin\Debug\netcoreapp2.1\Microsoft.Extensions.DependencyInjection.xml
+C:\Users\abia1\source\repos\Linux\UnitTestProject1\bin\Debug\netcoreapp2.1\Microsoft.Extensions.FileProviders.Abstractions.xml
+C:\Users\abia1\source\repos\Linux\UnitTestProject1\obj\Debug\netcoreapp2.1\UnitTestProject1.csproj.CopyComplete
+C:\Users\abia1\source\repos\Linux\UnitTestProject1\bin\Debug\netcoreapp2.1\Microsoft.AspNetCore.Hosting.dll
+C:\Users\abia1\source\repos\Linux\UnitTestProject1\bin\Debug\netcoreapp2.1\Microsoft.Extensions.Configuration.dll
+C:\Users\abia1\source\repos\Linux\UnitTestProject1\bin\Debug\netcoreapp2.1\Microsoft.AspNetCore.Hosting.xml
+C:\Users\abia1\source\repos\Linux\UnitTestProject1\bin\Debug\netcoreapp2.1\Microsoft.Extensions.Configuration.xml

@@ -1,0 +1,11 @@
+{
+  "profiles": {
+    "UnitTestProject1": {
+      "commandName": "Project",
+      "environmentVariables": {
+        "groupfiles": "C:\\test\\group.txt",
+        "passwd": "c:\\test\\passwd.txt"
+      }
+    }
+  }
+}

@@ -20,11 +20,25 @@ namespace Linux
    
     public class Startup
     {
+        static string passwd ;
+      public readonly IApiConfigurationSettings _config;
+        IHostingEnvironment _env { get; set; }
         private static PhysicalFileProvider _fileProvider =
    new PhysicalFileProvider("C:\\test");
-        public Startup(IConfiguration configuration)
+        //public Startup(IConfiguration configuration)
+        //{
+        //    Configuration = configuration;
+           
+        //}
+        public Startup(IHostingEnvironment env)
         {
-            Configuration = configuration;
+            //passwd = System.Environment.GetEnvironmentVariable("passwd");
+            _config = new ApiConfigurationSettings();
+            _config.GroupFiles = System.Environment.GetEnvironmentVariable("groupfiles");
+            _config.Passwd = System.Environment.GetEnvironmentVariable("passwd");
+
+            _env = env;
+
         }
 
         public IConfiguration Configuration { get; }
@@ -37,6 +51,7 @@ namespace Linux
 
             services.AddSingleton<IFileProvider>(physicalProvider);
             services.AddSingleton<IUserService, UserService>();
+            services.AddSingleton(typeof(IApiConfigurationSettings), _config);
 
         }
 
