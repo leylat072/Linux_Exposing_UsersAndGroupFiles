@@ -28,6 +28,7 @@ namespace Linux.Services
             users = userQuery.Gid == null ? users : users.Where(u => u.Gid == userQuery.Gid).ToList();
             users = userQuery.Home == null ? users : users.Where(u => u.Home == userQuery.Home).ToList();
             users = userQuery.Comment == null ? users : users.Where(u => u.Comment == userQuery.Comment).ToList();
+            users = userQuery.Shell == null ? users : users.Where(u => u.Shell == userQuery.Shell).ToList();
             //var json = Newtonsoft.Json.JsonConvert.SerializeObject(users);
             /* while (watcher.passwdFileIsChanged == true)
              {
