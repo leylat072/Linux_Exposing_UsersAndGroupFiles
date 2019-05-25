@@ -24,7 +24,7 @@ namespace Linux
       public readonly IApiConfigurationSettings _config;
         IHostingEnvironment _env { get; set; }
         private static PhysicalFileProvider _fileProvider =
-   new PhysicalFileProvider("C:\\test");
+   new PhysicalFileProvider(System.Environment.GetEnvironmentVariable("passwd"));
         //public Startup(IConfiguration configuration)
         //{
         //    Configuration = configuration;
@@ -36,7 +36,8 @@ namespace Linux
             _config = new ApiConfigurationSettings();
             _config.GroupFiles = System.Environment.GetEnvironmentVariable("groupfiles");
             _config.Passwd = System.Environment.GetEnvironmentVariable("passwd");
-
+            _config.ContentRoot = env.ContentRootPath;
+          
             _env = env;
 
         }
@@ -69,14 +70,15 @@ namespace Linux
 
             app.UseHttpsRedirection();
             app.UseMvc();
-            ChangeToken.OnChange(
-    () => _fileProvider.Watch("test.txt"),
+       /*     ChangeToken.OnChange(
+    () => _fileProvider.Watch(System.Environment.GetEnvironmentVariable("passwd")),
     (state) => Linux.Classes.watcher.MainAsync(),
     env);
             ChangeToken.OnChange(
-   () => _fileProvider.Watch("C:\\test\\test.txt"),
+   () => _fileProvider.Watch(System.Environment.GetEnvironmentVariable("groupfiles")),
    (state) => Linux.Classes.watcher.MainAsync(),
    env);
+            */
 
         }
     }

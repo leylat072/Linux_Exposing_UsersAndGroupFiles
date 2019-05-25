@@ -19,7 +19,8 @@
           "Microsoft.AspNetCore.Hosting": "2.1.1.0",
           "Microsoft.Extensions.Configuration": "2.1.1.0",
           "Microsoft.Extensions.DependencyInjection": "2.1.1.0",
-          "Microsoft.Extensions.FileProviders.Abstractions": "2.1.1.0"
+          "Microsoft.Extensions.FileProviders.Abstractions": "2.1.1.0",
+          "Microsoft.Extensions.Hosting.Abstractions": "2.1.1.0"
         },
         "runtime": {
           "UnitTestProject1.dll": {}
@@ -1047,6 +1048,14 @@
             "fileVersion": "2.1.1.18157"
           }
         }
+      },
+      "Microsoft.Extensions.Hosting.Abstractions/2.1.1.0": {
+        "runtime": {
+          "Microsoft.Extensions.Hosting.Abstractions.dll": {
+            "assemblyVersion": "2.1.1.0",
+            "fileVersion": "2.1.1.18157"
+          }
+        }
       }
     }
   },
@@ -1588,6 +1597,11 @@
       "sha512": ""
     },
     "Microsoft.Extensions.FileProviders.Abstractions/2.1.1.0": {
+      "type": "reference",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "Microsoft.Extensions.Hosting.Abstractions/2.1.1.0": {
       "type": "reference",
       "serviceable": false,
       "sha512": ""

@@ -1,0 +1,14 @@
+C:\Users\abia1\source\repos\Linux\Linux\bin\Release\netcoreapp2.1\Linux.deps.json
+C:\Users\abia1\source\repos\Linux\Linux\bin\Release\netcoreapp2.1\Linux.runtimeconfig.json
+C:\Users\abia1\source\repos\Linux\Linux\bin\Release\netcoreapp2.1\Linux.runtimeconfig.dev.json
+C:\Users\abia1\source\repos\Linux\Linux\bin\Release\netcoreapp2.1\Linux.dll
+C:\Users\abia1\source\repos\Linux\Linux\bin\Release\netcoreapp2.1\Linux.pdb
+C:\Users\abia1\source\repos\Linux\Linux\obj\Release\netcoreapp2.1\Linux.csprojAssemblyReference.cache
+C:\Users\abia1\source\repos\Linux\Linux\obj\Release\netcoreapp2.1\Linux.csproj.CoreCompileInputs.cache
+C:\Users\abia1\source\repos\Linux\Linux\obj\Release\netcoreapp2.1\Linux.RazorAssemblyInfo.cache
+C:\Users\abia1\source\repos\Linux\Linux\obj\Release\netcoreapp2.1\Linux.RazorAssemblyInfo.cs
+C:\Users\abia1\source\repos\Linux\Linux\obj\Release\netcoreapp2.1\Linux.AssemblyInfoInputs.cache
+C:\Users\abia1\source\repos\Linux\Linux\obj\Release\netcoreapp2.1\Linux.AssemblyInfo.cs
+C:\Users\abia1\source\repos\Linux\Linux\obj\Release\netcoreapp2.1\Linux.RazorTargetAssemblyInfo.cache
+C:\Users\abia1\source\repos\Linux\Linux\obj\Release\netcoreapp2.1\Linux.dll
+C:\Users\abia1\source\repos\Linux\Linux\obj\Release\netcoreapp2.1\Linux.pdb

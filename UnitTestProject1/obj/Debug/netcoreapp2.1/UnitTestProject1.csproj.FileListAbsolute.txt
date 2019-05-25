@@ -23,3 +23,5 @@ C:\Users\abia1\source\repos\Linux\UnitTestProject1\bin\Debug\netcoreapp2.1\Micro
 C:\Users\abia1\source\repos\Linux\UnitTestProject1\bin\Debug\netcoreapp2.1\Microsoft.Extensions.Configuration.dll
 C:\Users\abia1\source\repos\Linux\UnitTestProject1\bin\Debug\netcoreapp2.1\Microsoft.AspNetCore.Hosting.xml
 C:\Users\abia1\source\repos\Linux\UnitTestProject1\bin\Debug\netcoreapp2.1\Microsoft.Extensions.Configuration.xml
+C:\Users\abia1\source\repos\Linux\UnitTestProject1\bin\Debug\netcoreapp2.1\Microsoft.Extensions.Hosting.Abstractions.dll
+C:\Users\abia1\source\repos\Linux\UnitTestProject1\bin\Debug\netcoreapp2.1\Microsoft.Extensions.Hosting.Abstractions.xml

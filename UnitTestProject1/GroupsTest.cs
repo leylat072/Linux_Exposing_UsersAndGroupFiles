@@ -19,15 +19,20 @@ namespace UnitTestProject1
 
 
     {
+        public readonly IApiConfigurationSettings _config;
+        public GroupsTest()
+        {
+            LaunchSettingsFixture fixture = new LaunchSettingsFixture();
+            _config = new ApiConfigurationSettings();
+            _config.GroupFiles = System.Environment.GetEnvironmentVariable("groupfiles");
+            _config.Passwd = System.Environment.GetEnvironmentVariable("passwd");
+            //   _config.ContentRoot = env.ContentRootPath;
+        }
 
-        public IApiConfigurationSettings _config;
         [TestMethod]
         public void GetAllGroups()
         {
-            _config = new ApiConfigurationSettings();
-            _config.GroupFiles = "C:\\test\\group.txt"; //System.Environment.GetEnvironmentVariable("groupfiles");
-            _config.Passwd = "C:\\test\\passwd.txt";//System.Environment.GetEnvironmentVariable("passwd");
-            UserService userService = new UserService(_config);
+           UserService userService = new UserService(_config);
             var result = userService.GetAllGroups().Result;
             Assert.IsNotNull(result, "null: GetAllGroups");
             Assert.IsTrue(result.Count == 4, "count : GetAllGroups");
@@ -35,10 +40,7 @@ namespace UnitTestProject1
         [TestMethod]
         public void GetGroups()
         {
-            _config = new ApiConfigurationSettings();
-            _config.GroupFiles = "C:\\test\\group.txt"; //System.Environment.GetEnvironmentVariable("groupfiles");
-            _config.Passwd = "C:\\test\\passwd.txt";//System.Environment.GetEnvironmentVariable("passwd");
-            UserService userService = new UserService(_config);
+              UserService userService = new UserService(_config);
             var query = new Groups();
             query.Name = "root";
             var result = userService.GetGroups(query).Result;
@@ -68,9 +70,6 @@ namespace UnitTestProject1
         [TestMethod]
         public void GetGroupByGID()
         {
-            _config = new ApiConfigurationSettings();
-            _config.GroupFiles = "C:\\test\\group.txt"; //System.Environment.GetEnvironmentVariable("groupfiles");
-            _config.Passwd = "C:\\test\\passwd.txt";//System.Environment.GetEnvironmentVariable("passwd");
             UserService userService = new UserService(_config);
             var query = new Groups();
             query.Name = "root";
