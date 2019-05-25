@@ -195,7 +195,7 @@ namespace Linux.Services
                  watcher.passwdFileIsChanged = false;
              }*/
 
-            return groups;
+            return groups.OrderBy(g => g.Gid).ToList();
         }
         public async Task<Groups> GetGroupByGID(string gid)
         {

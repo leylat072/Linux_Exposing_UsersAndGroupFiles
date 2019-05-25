@@ -1,0 +1,4 @@
+cdrom:x:24:vivek,student13,raj
+root:x:0:guest,root,adm
+admin:x:1:root,jdoe,lp,lpd,bin
+supper:x:4:root,bin,jdoe
